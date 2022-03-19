@@ -1,0 +1,65 @@
+version: "3"
+
+services:
+    webserver:
+        image: nginx:1.21-alpine
+        container_name: sulius-sylius-webserver
+        depends_on:
+            - php
+        volumes:
+            - .:/srv/sylius:rw,cached
+            - ./public:/srv/sylius/public:ro
+            - ./public/media:/srv/sylius/public/media:ro
+            - ./docker/local/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.webserver-sylius.rule=Host(`sylius.local`)
+        networks:
+            - web
+
+    php:
+        build:
+            context: .
+            dockerfile: local.Dockerfile
+        container_name: sylius-sylius-php
+        links:
+            - database
+        volumes:
+            - .:/srv/sylius:rw,cached
+            - ./var:/srv/sylius/var:rw
+            - ./public:/srv/sylius/public:rw,delegated
+            - ./public/media:/srv/sylius/public/media:rw
+            - ./docker/local/config/php/php.ini:/usr/local/etc/php/php.ini
+            - ./docker/local/config/php/xdebug.ini:/usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
+        networks:
+            - web
+
+    database:
+        image: mysql:5.7
+        container_name: sylius-sylius-database
+        volumes:
+            - ./docker/local/mysql/data:/var/lib/mysql:rw,delegated
+        environment:
+            - MYSQL_ROOT_PASSWORD=secret
+            - MYSQL_DATABASE=sylius
+            - MYSQL_USER=sylius
+            - MYSQL_PASSWORD=secret
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.database-sylius.rule=Host(`database.sylius.local`)
+        networks:
+            - web
+
+    mailhog:
+        image: mailhog/mailhog:latest
+        container_name: sylius-sylius-mailhog
+        labels:
+            - traefik.enable=true
+            - traefik.http.routers.mailhog-sylius.rule=Host(`mailhog.sylius.local`)
+            - traefik.http.services.mailhog-sylius.loadbalancer.server.port=8025
+        networks:
+            - web
+
+networks:
+    web:
+        external: true
