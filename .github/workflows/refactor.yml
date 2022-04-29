@@ -64,4 +64,5 @@ jobs:
                     commit-message: Fix 
                     committer: GitHub <noreply@github.com>
                     author: Refactor <refactor@users.noreply.github.com>
-                    branch: 1.10 # TODO versions matrix
+                    branch: coding-standard-fixes # TODO versions matrix
+                    base: 1.10
