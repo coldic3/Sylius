@@ -13,7 +13,7 @@ jobs:
         
         name: "Coding standard fixes"
         
-        timeout-minutes: 2
+        timeout-minutes: 5
         
         steps:
             -
