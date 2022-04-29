@@ -62,6 +62,6 @@ jobs:
                 uses: peter-evans/create-pull-request@v4
                 with:
                     commit-message: Fix Coding Standard
-                    author: SyliusBot <SyliusBot@users.noreply.github.com>
+                    author: SyliusBot
                     branch: coding-standard-fixes # TODO versions matrix
                     base: 1.10
