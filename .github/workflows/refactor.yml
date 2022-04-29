@@ -1,0 +1,32 @@
+name: Refactor
+
+on:
+    schedule:
+        -
+            cron: "0 2 * * *" # Run at 2am every day
+    workflow_dispatch: ~
+    
+jobs:
+    coding-standard-fixes:
+        runs-on: ubuntu-latest
+        
+        name: "Coding standard fixes"
+        
+        timeout-minutes: 2
+        
+        steps:
+            -
+                uses: actions/checkout@v3
+
+            -
+                name: Run ECS
+                run: vendor/bin/ecs check --fix
+
+            -
+                name: Create Pull Request
+                uses: peter-evans/create-pull-request@v4
+                with:
+                    commit-message: Fix 
+                    committer: GitHub <noreply@github.com>
+                    author: Refactor <refactor@users.noreply.github.com>
+                    branch: 1.10 # TODO versions matrix
