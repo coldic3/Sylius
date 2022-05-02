@@ -36,8 +36,8 @@ final class AcceptLanguageHeaderDocumentationNormalizer implements NormalizerInt
             'in' => 'header',
             'required' => false,
             'schema' => [
-                'type' => 'string'
-            ]
+                'type' => 'string',
+            ],
         ];
 
         foreach ($docs['paths'] as $path => $methods) {
