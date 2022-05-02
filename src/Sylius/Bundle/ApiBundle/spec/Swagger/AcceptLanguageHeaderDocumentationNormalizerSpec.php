@@ -75,7 +75,7 @@ final class AcceptLanguageHeaderDocumentationNormalizerSpec extends ObjectBehavi
         ;
     }
 
-    function it_adds_accept_language_header_to_paths_which_are_objects(NormalizerInterface $decoratedNormalizer,): void
+    function it_adds_accept_language_header_to_paths_which_are_objects(NormalizerInterface $decoratedNormalizer): void
     {
         $docs = [
             'paths' => [
@@ -84,7 +84,7 @@ final class AcceptLanguageHeaderDocumentationNormalizerSpec extends ObjectBehavi
                         [
                             'parameters' => [],
                         ],
-                    )
+                    ),
                 ],
             ],
         ];
@@ -108,7 +108,7 @@ final class AcceptLanguageHeaderDocumentationNormalizerSpec extends ObjectBehavi
                                     'in' => 'header',
                                     'required' => false,
                                     'schema' => [
-                                        'type' => 'string'
+                                        'type' => 'string',
                                     ],
                                 ],
                             ],
