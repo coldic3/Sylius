@@ -44,7 +44,7 @@ final class ProductNormalizer implements ContextAwareNormalizerInterface, Normal
 
         $data = $this->normalizer->normalize($object, $format, $context);
 
-        $variantsIris = array_map(fn(ProductVariantInterface $variant): string => $this->iriConverter->getIriFromItem($variant), $object->getEnabledVariants()->toArray());
+        $variantsIris = array_map(fn (ProductVariantInterface $variant): string => $this->iriConverter->getIriFromItem($variant), $object->getEnabledVariants()->toArray());
         $data['variants'] = array_values($variantsIris);
 
         $defaultVariant = $this->defaultProductVariantResolver->getVariant($object);
