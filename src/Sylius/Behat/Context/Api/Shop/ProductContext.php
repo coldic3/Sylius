@@ -56,6 +56,7 @@ final class ProductContext implements Context
         $this->sharedStorage->set('product', $product);
         $this->sharedStorage->set('product_variant', $productVariant);
     }
+
     /**
      * @When I view product :product in the :localeCode locale
      * @When /^I check (this product)'s details in the ("([^"]+)" locale)$/
@@ -602,8 +603,7 @@ final class ProductContext implements Context
                 $variants = $this->responseChecker->getValue($response, 'variants');
 
                 foreach ($variants as $variantIri) {
-                    if ($this->variantHasProductOptionValue($variantIri, $optionValue))
-                    {
+                    if ($this->variantHasProductOptionValue($variantIri, $optionValue)) {
                         return true;
                     }
                 }
@@ -625,11 +625,11 @@ final class ProductContext implements Context
         $variants = $this->client->showByIri($variantIri);
         $optionValues = $this->responseChecker->getValue($variants, 'optionValues');
 
-            foreach ($optionValues as $valueIri) {
-                if ($this->hasProductOptionWithValue($valueIri, $optionValue)) {
-                    return true;
-                }
+        foreach ($optionValues as $valueIri) {
+            if ($this->hasProductOptionWithValue($valueIri, $optionValue)) {
+                return true;
             }
+        }
 
         return false;
     }
