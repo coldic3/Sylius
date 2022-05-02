@@ -15,6 +15,11 @@ jobs:
         
         timeout-minutes: 5
         
+        strategy:
+            fail-fast: false
+            matrix:
+                branch: ["1.10", "1.11", "master"]
+        
         steps:
             -
                 uses: actions/checkout@v3
@@ -41,6 +46,5 @@ jobs:
                 uses: peter-evans/create-pull-request@v4
                 with:
                     commit-message: Fix Coding Standard
-                    author: SyliusBot <>
-                    branch: coding-standard-fixes # TODO versions matrix
-                    base: 1.10
+                    branch: coding-standard-fixes-${{ matrix.php }}
+                    base: ${{ matrix.php }}
