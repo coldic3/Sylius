@@ -14,12 +14,18 @@ jobs:
         
         timeout-minutes: 5
         
+        if: github.repository == 'Sylius/Sylius'
+        
         strategy:
             fail-fast: false
             matrix:
                 branch: ["1.11", "1.12", "1.13"]
         
         steps:
+            -
+                name: WIP
+                run: echo ${github.repository}
+                
             -
                 uses: actions/checkout@v3
                 with:
