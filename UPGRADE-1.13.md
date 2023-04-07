@@ -44,6 +44,7 @@
         }
     }
    ```
+
 1. Not passing `Sylius\Component\Core\Checker\ProductVariantLowestPriceDisplayCheckerInterface` 
    to `Sylius\Component\Core\Calculator\ProductVariantPriceCalculator`
    as a first argument is deprecated.
@@ -51,3 +52,8 @@
 1. Not passing an instance of `Symfony\Component\PropertyAccess\PropertyAccessorInterface`
    to `Sylius\Bundle\CoreBundle\Validator\Constraints\HasEnabledEntityValidator`
    as the second argument is deprecated.
+
+1. Using Guzzle has been deprecated in favor of Symfony HTTP Client. Therefore, passing `GuzzleHttp\ClientInterface`
+   to `Sylius\Bundle\AdminBundle\Controller\NotificationController` as a second argument is deprecated.
+
+1. The `sylius.http_message_factory` service has been deprecated. Use `sylius.http_request_factory` instead.
