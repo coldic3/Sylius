@@ -53,15 +53,17 @@
    to `Sylius\Bundle\CoreBundle\Validator\Constraints\HasEnabledEntityValidator`
    as the second argument is deprecated.
 
-<<<<<<< HEAD
 1. Class `\Sylius\Bundle\ShopBundle\Calculator\OrderItemsSubtotalCalculator` has been deprecated. Order items subtotal calculation
    is now available on the Order model `\Sylius\Component\Core\Model\Order::getItemsSubtotal`.
 
-1. Using Guzzle has been deprecated in favor of Symfony HTTP Client. Therefore, passing `GuzzleHttp\ClientInterface`
-=======
-1. Using Guzzle has been deprecated in favor of Symfony HTTP Client. Therefore, passing Guzzle 6 `GuzzleHttp\ClientInterface`
+1. Using Guzzle 6 has been deprecated in favor of Symfony HTTP Client. Therefore, passing Guzzle 6 `GuzzleHttp\ClientInterface`
    or any other HTTP Client that does not implement `Psr\Http\Client\ClientInterface`
->>>>>>> 577914fa71 ([Admin] Improve deprecations in NotificationController)
-   to `Sylius\Bundle\AdminBundle\Controller\NotificationController` as a second argument is deprecated.
+   to the `Sylius\Bundle\AdminBundle\Controller\NotificationController` as a first argument is deprecated.
 
-1. The `sylius.http_message_factory` service has been deprecated. Use `sylius.http_request_factory` instead.
+1. Not passing `Psr\Http\Message\RequestFactoryInterface` as a second argument
+   of the `Sylius\Bundle\AdminBundle\Controller\NotificationController` is deprecated.
+
+1. Not passing `Psr\Http\Message\StreamFactoryInterface` as a fifth argument
+   of the `Sylius\Bundle\AdminBundle\Controller\NotificationController` is deprecated.
+
+1. The `sylius.http_message_factory` service has been deprecated. Use `Psr\Http\Message\RequestFactoryInterface` instead.
