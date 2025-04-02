@@ -558,11 +558,11 @@
             "ref": "8273133183506fe6ec66895e8890227b0dfba1c7"
         }
     },
-    "sonata-project/twig-extensions": {
-        "version": "1.4.1"
-    },
     "squizlabs/php_codesniffer": {
         "version": "3.3.1"
+    },
+    "stella-maris/clock": {
+        "version": "0.1.4"
     },
     "stof/doctrine-extensions-bundle": {
         "version": "1.2",
